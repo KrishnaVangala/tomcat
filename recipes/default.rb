@@ -25,16 +25,19 @@ end
 # TODO: This is idempotent
 execute 'tar-extraction' do
   command 'tar xvf apache-tomcat-8.5.20.tar.gz -C /opt/tomcat --strip-components=1'
+  command 'chgrp -R tomcat /opt/tomcat/conf'
+  command 'chmod g+r /opt/tomcat/conf/*'
+  command 'chown -R tomcat:tomcat /opt/tomcat/'
   action :nothing
 end
 
 # execute 'tar xvf apache-tomcat-8.5.20.tar.gz -C /opt/tomcat --strip-components=1 '
-execute 'chgrp -R tomcat /opt/tomcat/conf'
+#execute 'chgrp -R tomcat /opt/tomcat/conf'
 directory '/opt/tomcat/conf' do
     mode '0070'
 end
-execute 'chmod g+r /opt/tomcat/conf/*'
-execute 'chown -R tomcat:tomcat /opt/tomcat/'
+#execute 'chmod g+r /opt/tomcat/conf/*'
+#execute 'chown -R tomcat:tomcat /opt/tomcat/'
 template '/etc/systemd/system/tomcat.service' do
     source 'tomcat.service.erb'
 end
