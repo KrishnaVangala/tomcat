@@ -39,3 +39,8 @@ describe file ('/opt/tomcat' ) do
   it {should exist}
   it {should be_directory}
 end
+
+describe file ('/opt/tomcat/conf') do
+  it {should exist}
+  its ('mode') {should cmp '070'}
+end
