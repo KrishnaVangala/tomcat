@@ -18,7 +18,7 @@ end
 remote_file 'apache-tomcat-8.5.20.tar.gz' do
   source 'http://apache.parentingamerica.com/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz'
   #notify the execute of tar file.
-  notifies :run 'execute[tar-extraction]', :immediately
+  notifies :run, 'execute[tar-extraction]', :immediately
 end
 directory '/opt/tomcat' do
 end
