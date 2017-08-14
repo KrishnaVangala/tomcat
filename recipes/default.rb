@@ -28,7 +28,7 @@ directory '/opt/tomcat/conf' do
     mode '0070'
 end
 execute 'chmod g+r /opt/tomcat/conf/*'
-execute 'chown -R tomcat /opt/tomcat/
+execute 'chown -R tomcat /opt/tomcat/'
 template '/etc/systemd/system/tomcat.service' do
     source 'tomcat.service.erb'
 end
