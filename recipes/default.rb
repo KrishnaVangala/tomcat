@@ -28,3 +28,4 @@ directory '/opt/tomcat/conf' do
     mode '0070'
 end
 execute 'chmod g+r /opt/tomcat/conf/*'
+execute 'chown -R tomcat /opt/tomcat/webapps /opt/tomcat/work /opt/tomcat/temp /opt/tomcat/logs'

@@ -44,3 +44,10 @@ describe file ('/opt/tomcat/conf') do
   it {should exist}
   its ('mode') {should cmp '070'}
 end
+%w(webapps logs work temp).each do |folder|
+  describe file ("/opt/tomcat/#{folder}") do
+    it {should exist}
+    it {should be_owned_by 'tomcat'}
+  end
+end
+  
