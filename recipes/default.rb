@@ -25,9 +25,6 @@ end
 # TODO: This is idempotent
 execute 'tar-extraction' do
   command 'tar xvf apache-tomcat-8.5.20.tar.gz -C /opt/tomcat --strip-components=1'
-  command 'chgrp -R tomcat /opt/tomcat/conf'
-  command 'chmod g+r /opt/tomcat/conf/*'
-  command 'chown -R tomcat:tomcat /opt/tomcat/'
   action :nothing
 end
 
@@ -35,7 +32,16 @@ end
 #execute 'chgrp -R tomcat /opt/tomcat/conf'
 directory '/opt/tomcat/conf' do
     mode '0070'
+    notifies :run, 'execute[perm-change]',:immediately
 end
+
+execute 'perm-change' do
+  command 'chgrp -R tomcat /opt/tomcat/conf'
+  command 'chmod g+r /opt/tomcat/conf/*'
+  command 'chown -R tomcat:tomcat /opt/tomcat/'
+  action :run
+end
+
 #execute 'chmod g+r /opt/tomcat/conf/*'
 #execute 'chown -R tomcat:tomcat /opt/tomcat/'
 template '/etc/systemd/system/tomcat.service' do
