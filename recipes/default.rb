@@ -23,7 +23,7 @@ directory '/opt/tomcat' do
 end
 # TODO: This is idempotent
 execute 'tar xvf apache-tomcat-8.5.20.tar.gz -C /opt/tomcat --strip-components=1 '
-execute 'chgrp -R tomcat conf'
+execute 'chgrp -R tomcat /opt/tomcat/conf'
 directory '/opt/tomcat/conf' do
     mode '0070'
 end
