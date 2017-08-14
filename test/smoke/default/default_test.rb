@@ -18,5 +18,5 @@ describe port(80), :skip do
 end
 
 describe command('curl http://localhost:8080') do
-    its(stdout){ should eq '/Tomcat/' }
+    its(:stdout){ should eq '/Tomcat/' }
 end
