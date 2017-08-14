@@ -6,3 +6,11 @@
 package 'java-1.7.0-openjdk-devel' do
   action :install
 end
+#group 'tomcat'
+
+#user 'tomcat' do
+#  manage_home false
+#  shell '/bin/nologin'
+#  group 'tomcat'
+#  home '/opt/tomcat'
+#end

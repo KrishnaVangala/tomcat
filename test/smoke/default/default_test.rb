@@ -26,3 +26,12 @@ describe package('java-1.7.0-openjdk-devel') do
     it { should be_installed }
 end
 
+describe group('tomcat') do
+  it { should exist}
+end
+describe user ('tomcat') do
+  it {should exist}
+  its ('group') {should eq 'tomcat'} 
+  its ('home') { should eq '/opt/tomcat'}
+  its ('shell') {should eq '/bin/nologin'}
+end
