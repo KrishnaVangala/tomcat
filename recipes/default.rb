@@ -27,4 +27,4 @@ execute 'chgrp -R tomcat /opt/tomcat/conf'
 directory '/opt/tomcat/conf' do
     mode '0070'
 end
-execute 'chmod g+r conf/*'
+execute 'chmod g+r /opt/tomcat/conf/*'
