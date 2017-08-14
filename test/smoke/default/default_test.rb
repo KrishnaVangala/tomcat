@@ -17,8 +17,6 @@ describe port(80), :skip do
   it { should_not be_listening }
 end
 
-describe 'tomcat::default' do
-  describe command("curl http://localhost:8080") do
-    its(:stdout){ should match /Tomcat/ }
-  end
+describe command('curl http://localhost:8080') do
+    its(stdout){ should eq '/Tomcat/' }
 end
