@@ -35,6 +35,6 @@ end
 
 execute 'systemctl daemon-reload'
 
-service 'tomcat' do
+service 'tomcat.service' do
   action [:start, :enable]
 end
