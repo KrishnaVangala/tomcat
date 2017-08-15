@@ -16,3 +16,38 @@ end
 describe port(80), :skip do
   it { should_not be_listening }
 end
+
+
+describe command('curl http://localhost:8080') do
+    its(:stdout){ should eq '/Tomcat/' }
+end
+
+describe package('java-1.7.0-openjdk-devel') do
+    it { should be_installed }
+end
+
+describe group('tomcat') do
+  it { should exist}
+end
+describe user ('tomcat') do
+  it {should exist}
+  its ('group') {should eq 'tomcat'} 
+  its ('home') { should eq '/opt/tomcat'}
+  its ('shell') {should eq '/bin/nologin'}
+end
+describe file ('/opt/tomcat' ) do
+  it {should exist}
+  it {should be_directory}
+end
+
+describe file ('/opt/tomcat/conf') do
+  it {should exist}
+  its ('mode') {should cmp '070'}
+end
+%w(webapps logs work temp).each do |folder|
+  describe file ("/opt/tomcat/#{folder}") do
+    it {should exist}
+    it {should be_owned_by 'tomcat'}
+  end
+end
+  
